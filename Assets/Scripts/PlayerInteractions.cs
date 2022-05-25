@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    public PlayerState playerState;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Door")
+        if (other.tag == "Puerta")
         {
-            other.GetComponentInParent<Door>().OnOpenDoor();   
-        }      
+            if (playerState.batteryCount >= 3)
+            {
+                other.GetComponentInParent<Door>().OnOpenDoor();
+            }
+        }
+
+        if (other.tag == "Battery")
+        {
+            other.GetComponent<Battery>().OnGetBattery();
+            playerState.batteryCount++;
+        }
     }
 
     private void OnTriggerStay(Collider other)

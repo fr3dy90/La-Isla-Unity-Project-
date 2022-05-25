@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Animator animator;
+    public Animator anim;
 
-
-    public void OnOpenDoor()
+    public void OnOpenDoor() 
     {
-        animator.SetTrigger("OpenDoor");
-    }
+        anim.SetTrigger("OpenDoor");           
+    } 
 }
