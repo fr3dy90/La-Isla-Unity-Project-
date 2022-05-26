@@ -5,21 +5,17 @@ using UnityEngine;
 public class PlayerInteractions : MonoBehaviour
 {
     public PlayerState playerState;
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Puerta")
+        if (other.tag == "Puerta" && playerState.batteryCount >= 3)
         {
-            if (playerState.batteryCount >= 3)
-            {
-                other.GetComponentInParent<Door>().OnOpenDoor();
-            }
+            other.GetComponentInParent<Door>().OnOpenDoor();
         }
 
         if (other.tag == "Battery")
         {
             other.GetComponent<Battery>().OnGetBattery();
-            playerState.batteryCount++;
+            playerState.batteryCount++;                                   
         }
     }
 
