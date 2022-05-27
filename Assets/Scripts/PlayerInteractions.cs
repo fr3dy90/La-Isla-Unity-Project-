@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    public Transform cameraPlayer;
+
+    private void Update()
+    {
+        Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward, Color.green);       
+    }
+
+
     public PlayerState playerState;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Puerta" && playerState.batteryCount >= 3)
+        if (other.tag == "Puerta" && playerState.batteryCount >= other.GetComponentInParent<Door>().batterysNeed)
         {
             other.GetComponentInParent<Door>().OnOpenDoor();
         }

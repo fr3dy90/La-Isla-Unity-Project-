@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class Plataforma : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject platform;
+
+    public Transform minPosition;
+    public Transform maxPosition;
+
+    public float speedMovement;
+
+    private void OnTriggerStay(Collider other)
     {
-        
+        if (other != null)
+        {
+            MovePlatform();                
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void MovePlatform()
     {
-        
+        if (platform.transform.position.y >= maxPosition.position.y && speedMovement > 0)
+        {
+            speedMovement = speedMovement * -1f;
+        }
+
+        if (platform.transform.position.y <= minPosition.position.y && speedMovement < 0)
+        {
+            speedMovement = speedMovement * -1f;
+        }
+
+        platform.transform.Translate(Vector3.up * Time.deltaTime * speedMovement);        
     }
 }
