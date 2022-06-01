@@ -6,20 +6,28 @@ public class PlayerInteractions : MonoBehaviour
 {
     public Transform cameraPlayer;
     public Transform objetoVacio;
+    public Transform gunPoint;
     public LayerMask lm;
 
     private void Update()
     {
-        Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward, Color.green);
-
-        RaycastHit hit;
-        if (Physics.Raycast(cameraPlayer.position, cameraPlayer.forward, out hit, 2f, lm))
-        { 
-            if (Input.GetButtonDown("PickButton"))
+        if (Input.GetButtonDown("PickButton"))
+        {
+            if (objetoVacio.childCount > 0)
             {
-                hit.transform.parent = objetoVacio;
-                hit.transform.localPosition = Vector3.zero;
-                Debug.Log(hit.transform.name);
+                objetoVacio.transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
+                objetoVacio.DetachChildren();
+            }
+            else
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(cameraPlayer.position, cameraPlayer.forward, out hit, 2f, lm))
+                {
+                    hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    hit.transform.parent = objetoVacio;
+                    hit.transform.localPosition = Vector3.zero;
+                    Debug.Log(hit.transform.name);
+                }
             }
         }
     }
@@ -37,6 +45,13 @@ public class PlayerInteractions : MonoBehaviour
         {
             other.GetComponent<Battery>().OnGetBattery();
             playerState.batteryCount++;                                   
+        }
+
+        if (other.tag == "Gun")
+        {
+            other.transform.parent = gunPoint;
+            other.transform.localRotation = Quaternion.identity;
+            other.transform.localPosition = Vector3.zero;
         }
     }
 
