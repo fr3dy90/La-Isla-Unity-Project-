@@ -21,40 +21,10 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.8f;
     public float jumpHeight;
 
-    private void Start()
-    {
-        //Cursor.lockState = CursorLockMode.Locked;
-    }
-
+   
 
     private void Update()
     {
-        //Capturar el movimiento del mouse
-        mouseMovement = new Vector2(Input.GetAxis("Mouse X") * sencibilidadDelRaton, Input.GetAxis("Mouse Y") * sencibilidadDelRaton);
-
-        //Captura valores del analogo para el movimiento del enemigo
-        direction.x = Input.GetAxis("Horizontal");
-        direction.z = Input.GetAxis("Vertical");
-
-        //Transformar la direccion a coordenadas del jugador
-        direction = transform.TransformDirection(direction);
-
-        //Mover el jugador en base a los inputs
-        controller.Move(direction * Time.deltaTime * speedMovement);
-
-        //Almacenar el movimiento del mouse
-        rotacionCamaraX -= mouseMovement.y;
-        rotacionPersonajeY += mouseMovement.x;
-
-        //Limitar la rotacion de la camara en el eje x
-        rotacionCamaraX = Mathf.Clamp(rotacionCamaraX, -40, 40);
-
-        //Rotar la camara del personaje en base al movimiento acomulado
-        camaraPersonaje.transform.localRotation = Quaternion.Euler(rotacionCamaraX, 0, 0);
-
-        //Rotar el personaje en base al movimiento acomulado
-        controller.transform.rotation = Quaternion.Euler(0,rotacionPersonajeY,0);
-
         //Calcular gravedad en cada frame
         movementY.y += gravity * Time.deltaTime;
 
@@ -66,11 +36,51 @@ public class PlayerMovement : MonoBehaviour
         {
             movementY.y = -2f;
         }
+    }
+                             
+    public void Move( float horizontal, float vertical)
+    {
+        //Captura valores del analogo para el movimiento del enemigo
+        direction.x = horizontal;
+        direction.z = vertical;
 
+        //Transformar la direccion a coordenadas del jugador
+        direction = transform.TransformDirection(direction);
+
+        //Mover el jugador en base a los inputs
+        controller.Move(direction * Time.deltaTime * speedMovement);
+    }
+
+    public void RotarPersonaje(float rotacionPersonaje)
+    {
+        mouseMovement.x = rotacionPersonaje;
+        rotacionPersonajeY += mouseMovement.x;
+
+        //Rotar el personaje en base al movimiento acomulado
+        controller.transform.rotation = Quaternion.Euler(0, rotacionPersonajeY, 0);
+    }
+
+    public void RotarCamera(float rotacionCamera)
+    {
+        //Capturar el movimiento del mouse
+        mouseMovement.y = rotacionCamera;
+
+        //Almacenar el movimiento del mouse
+        rotacionCamaraX -= mouseMovement.y;
+
+        //Limitar la rotacion de la camara en el eje x
+        rotacionCamaraX = Mathf.Clamp(rotacionCamaraX, -40, 40);
+
+        //Rotar la camara del personaje en base al movimiento acomulado
+        camaraPersonaje.transform.localRotation = Quaternion.Euler(rotacionCamaraX, 0, 0);
+    }
+
+    public void Jump()
+    {
         //Si el personaje esta tocando el suelo y al precionar la tecla, calcular el salto del personaje
-        if(controller.isGrounded && Input.GetButtonDown("Jump")) 
+        if (controller.isGrounded)
         {
-            movementY.y = Mathf.Sqrt(jumpHeight * -2 * gravity);    
+            movementY.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
     }
 }
