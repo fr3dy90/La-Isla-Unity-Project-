@@ -11,6 +11,7 @@ public class PlayerInteractions : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetButtonDown("PickButton"))
         {
             if (objetoVacio.childCount > 0)
@@ -31,6 +32,9 @@ public class PlayerInteractions : MonoBehaviour
             }
         }
     }
+        
+
+        
 
 
     public PlayerState playerState;
