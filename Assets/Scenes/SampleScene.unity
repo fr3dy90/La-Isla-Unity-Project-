@@ -123,37 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &19130837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 19130838}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &19130838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19130837}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 411.53333, y: 177.05084, z: 480.76892}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &67367357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,7 +1240,7 @@ MonoBehaviour:
   platform: {fileID: 1785760154}
   minPosition: {fileID: 1234962408}
   maxPosition: {fileID: 2100546272}
-  speedMovement: 2
+  speedMovement: 0
 --- !u!4 &902845956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1aace529d38855947a02a04160c0e556,
@@ -1407,8 +1376,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1165030820}
-  - component: {fileID: 1165030819}
   - component: {fileID: 1165030818}
+  - component: {fileID: 1165030819}
   - component: {fileID: 1165030821}
   - component: {fileID: 1165030822}
   m_Layer: 0
