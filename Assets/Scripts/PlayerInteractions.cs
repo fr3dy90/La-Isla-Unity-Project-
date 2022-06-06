@@ -67,6 +67,11 @@ public class PlayerInteractions : MonoBehaviour
             other.transform.localPosition = Vector3.zero;
             other.transform.localRotation = Quaternion.identity;
         }
+
+        if (other.tag == "Axe")
+        {
+            Debug.Log("Damage");
+        }
     }
 
     private void OnTriggerStay(Collider other)

@@ -7,7 +7,13 @@ public class EnemyController : MonoBehaviour
 {
     public PlayerMovement movement;
     public Transform jugador;
-    public float range;
+    public float rangeDetection;
+    public float distanceAttack;
+    public float rangeAtack;
+    public float inputMoveForward;
+    public Animator animatorController;
+    public float attackRate;
+    float waitTime;
 
     private void Start()
     {
@@ -15,12 +21,32 @@ public class EnemyController : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (Vector3.Distance(transform.position, jugador.position) <= range)
+    { 
+        float distance = Vector3.Distance(transform.position, jugador.position);
+
+        if (distance <= rangeDetection)
         {
             Rotar();
-            movement.Move(0, 1);                
+            inputMoveForward = 1;
         }
+        else
+        {
+            inputMoveForward = 0;
+        }
+
+        if (distance <= rangeAtack)
+        {
+            if (waitTime >= attackRate)
+            {
+                waitTime = 0;
+                Attack();
+            }
+            //animatorController.SetBool("Attack", false);
+            waitTime += Time.deltaTime;
+            inputMoveForward = 0;
+        }
+
+        movement.Move(0, inputMoveForward);                
     }
 
     void Rotar()
@@ -28,7 +54,7 @@ public class EnemyController : MonoBehaviour
         Vector3 desireDirection = jugador.position - transform.position;
         desireDirection.y = 0;
         
-        if (Vector3.Dot(transform.TransformDirection(Vector3.forward).normalized, desireDirection.normalized) < .95f)
+        if (Vector3.Dot(transform.TransformDirection(Vector3.forward).normalized, desireDirection.normalized) < .99f)
         {
             if (Vector3.Dot(transform.TransformDirection(Vector3.right).normalized, desireDirection.normalized) > 0)
             {
@@ -39,5 +65,27 @@ public class EnemyController : MonoBehaviour
                 movement.RotarPersonaje(-1);
             }
         }
+    }
+
+    void Attack()
+    {
+        /*
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * rangeAtack, Color.red);
+        if (Physics.SphereCast(transform.position, 0.2f ,transform.TransformDirection(Vector3.forward), out RaycastHit hit, distanceAttack))
+        {
+            if (hit.transform.GetComponent<PlayerState>() != null)
+            {
+                PlayerState playerState = hit.transform.GetComponent<PlayerState>();
+                
+            }
+        }
+        */
+        animatorController.SetBool("Attack", true);
+        Invoke("ResetAttack", .5f);
+    }
+
+    private void ResetAttack()
+    {
+        animatorController.SetBool("Attack", false);        
     }
 }
