@@ -5,38 +5,39 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class EnemyController : MonoBehaviour
 {
-    PlayerMovement playerMovement;
-    public float walkTime;
-    public float walkT;
-    float angle = 90;
-    float root;
+    public PlayerMovement movement;
+    public Transform jugador;
+    public float range;
 
     private void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        movement.GetComponent<PlayerMovement>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (walkT >= walkTime)
+        if (Vector3.Distance(transform.position, jugador.position) <= range)
         {
-            walkT = 0;
-            TurnPlayer();
+            Rotar();
+            movement.Move(0, 1);                
         }
-
-        walkT += Time.deltaTime;
-        playerMovement.Move(0, 1);
-
     }
 
-    void TurnPlayer()
+    void Rotar()
     {
-        root = root + angle;
-        if (root >= 360)
+        Vector3 desireDirection = jugador.position - transform.position;
+        desireDirection.y = 0;
+        
+        if (Vector3.Dot(transform.TransformDirection(Vector3.forward).normalized, desireDirection.normalized) < .95f)
         {
-            root = 0;
+            if (Vector3.Dot(transform.TransformDirection(Vector3.right).normalized, desireDirection.normalized) > 0)
+            {
+                movement.RotarPersonaje(1);
+            }
+            else 
+            {
+                movement.RotarPersonaje(-1);
+            }
         }
-        playerMovement.controller.transform.rotation = Quaternion.Euler(0,root,0);
     }
 }

@@ -6,12 +6,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovement playerMovement;
-    public Transform target;
 
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-
     }
 
     private void Update()
@@ -24,7 +22,5 @@ public class PlayerController : MonoBehaviour
         {
             playerMovement.Jump();
         }
-
-        playerMovement.camaraPersonaje.transform.LookAt(target);
     }
 }

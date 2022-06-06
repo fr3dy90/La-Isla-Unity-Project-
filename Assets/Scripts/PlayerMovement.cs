@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void RotarPersonaje(float rotacionPersonaje)
     {
+        rotacionPersonaje *= sencibilidadDelRaton;
         mouseMovement.x = rotacionPersonaje;
         rotacionPersonajeY += mouseMovement.x;
 
