@@ -5,18 +5,22 @@ using UnityEngine;
 public class PlayerInteractions : MonoBehaviour
 {
     public Transform cameraPlayer;
-    public Transform objetoVacio;
-    public Transform gunPoint;
+    public Transform objetoVacioCaja;
+    public Transform objetoVacioArma;
     public LayerMask lm;
 
     private void Update()
     {
         if (Input.GetButtonDown("PickButton"))
         {
-            if (objetoVacio.childCount > 0)
+            if (objetoVacioCaja.childCount > 0)
             {
-                objetoVacio.transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
-                objetoVacio.DetachChildren();
+                objetoVacioCaja.transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
+                objetoVacioCaja.DetachChildren();
+                if (objetoVacioArma.childCount > 0)
+                {
+                    objetoVacioArma.GetChild(0).gameObject.SetActive(true);
+                }
             }
             else
             {
@@ -24,9 +28,13 @@ public class PlayerInteractions : MonoBehaviour
                 if (Physics.Raycast(cameraPlayer.position, cameraPlayer.forward, out hit, 2f, lm))
                 {
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    hit.transform.parent = objetoVacio;
+                    hit.transform.parent = objetoVacioCaja;
                     hit.transform.localPosition = Vector3.zero;
                     Debug.Log(hit.transform.name);
+                    if (objetoVacioArma.childCount > 0)
+                    {
+                        objetoVacioArma.GetChild(0).gameObject.SetActive(false);
+                    }
                 }
             }
         }
@@ -48,9 +56,13 @@ public class PlayerInteractions : MonoBehaviour
 
         if (other.tag == "Gun")
         {
-            other.transform.parent = gunPoint;
+            other.transform.parent = objetoVacioArma;
             other.transform.localRotation = Quaternion.identity;
             other.transform.localPosition = Vector3.zero;
+            if (objetoVacioCaja.childCount > 0)
+            {
+                other.gameObject.SetActive(false);
+            }
         }
     }
 
