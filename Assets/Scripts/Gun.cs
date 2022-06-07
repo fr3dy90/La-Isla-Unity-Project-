@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    //Instancear un objeto
+    public GameObject pref_Bullet;
+    public Transform spawnPoint;
+    private void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(pref_Bullet, spawnPoint.position, spawnPoint.rotation);                   
+        }
+    }
 
-    //Aplicarle fuerza a un rigidbody
 }

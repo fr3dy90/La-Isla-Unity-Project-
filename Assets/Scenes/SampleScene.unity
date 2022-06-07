@@ -376,6 +376,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 209529140}
   batterysNeed: 0
+--- !u!1 &296606344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 296606345}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &296606345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296606344}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.33, y: 0.567, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1438502462}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,11 +1488,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPlayer: {fileID: 956450854}
-  objetoVacio: {fileID: 67367358}
-  gunPoint: {fileID: 751520705}
+  objetoVacioCaja: {fileID: 67367358}
+  objetoVacioArma: {fileID: 751520705}
   lm:
     serializedVersion: 2
     m_Bits: 128
+  rayDistance: 1.5
   playerState: {fileID: 1165030822}
 --- !u!114 &1165030822
 MonoBehaviour:
@@ -1654,6 +1686,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.4189315, y: 1.401155, z: 0.48834404}
   m_Center: {x: -0.10373487, y: 0.2005775, z: 0.000000028820786}
+--- !u!4 &1438502462 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 55bc41e4513c87c4d88b3e2247915e40,
+    type: 3}
+  m_PrefabInstance: {fileID: 464609480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1438502463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438502460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287b611bb17d6144b8ef86149be4a962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pref_Bullet: {fileID: 350895990344907473, guid: d4434ddeb5b18b0448314403ef597794,
+    type: 3}
+  spawnPoint: {fileID: 296606345}
 --- !u!1001 &1536935006
 PrefabInstance:
   m_ObjectHideFlags: 0

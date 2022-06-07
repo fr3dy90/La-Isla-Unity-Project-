@@ -8,6 +8,8 @@ public class PlayerInteractions : MonoBehaviour
     public Transform objetoVacioCaja;
     public Transform objetoVacioArma;
     public LayerMask lm;
+    public float rayDistance;
+    public PlayerState playerState;
 
     private void Update()
     {
@@ -15,7 +17,7 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (objetoVacioCaja.childCount > 0)
             {
-                objetoVacioCaja.transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
+                objetoVacioCaja.GetComponentInChildren<Rigidbody>().isKinematic = false;
                 objetoVacioCaja.DetachChildren();
                 if (objetoVacioArma.childCount > 0)
                 {
@@ -24,13 +26,13 @@ public class PlayerInteractions : MonoBehaviour
             }
             else
             {
-                RaycastHit hit;
-                if (Physics.Raycast(cameraPlayer.position, cameraPlayer.forward, out hit, 2f, lm))
+                Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward * rayDistance, Color.green);
+                if (Physics.Raycast(cameraPlayer.position, cameraPlayer.forward, out RaycastHit hit, rayDistance, lm)) 
                 {
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
                     hit.transform.parent = objetoVacioCaja;
                     hit.transform.localPosition = Vector3.zero;
-                    Debug.Log(hit.transform.name);
+                    hit.transform.localRotation = Quaternion.identity;
                     if (objetoVacioArma.childCount > 0)
                     {
                         objetoVacioArma.GetChild(0).gameObject.SetActive(false);
@@ -40,7 +42,6 @@ public class PlayerInteractions : MonoBehaviour
         }
     }
 
-    public PlayerState playerState;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Puerta" && playerState.batteryCount >= other.GetComponentInParent<Door>().batterysNeed)
