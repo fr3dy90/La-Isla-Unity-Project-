@@ -41,7 +41,6 @@ public class EnemyController : MonoBehaviour
                 waitTime = 0;
                 Attack();
             }
-            //animatorController.SetBool("Attack", false);
             waitTime += Time.deltaTime;
             inputMoveForward = 0;
         }
@@ -69,23 +68,6 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
-        /*
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * rangeAtack, Color.red);
-        if (Physics.SphereCast(transform.position, 0.2f ,transform.TransformDirection(Vector3.forward), out RaycastHit hit, distanceAttack))
-        {
-            if (hit.transform.GetComponent<PlayerState>() != null)
-            {
-                PlayerState playerState = hit.transform.GetComponent<PlayerState>();
-                
-            }
-        }
-        */
-        animatorController.SetBool("Attack", true);
-        Invoke("ResetAttack", .5f);
-    }
-
-    private void ResetAttack()
-    {
-        animatorController.SetBool("Attack", false);        
+        animatorController.SetTrigger("Attack");
     }
 }

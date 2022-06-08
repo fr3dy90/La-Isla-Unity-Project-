@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8048552259909493373}
   - component: {fileID: 4798085578338337288}
+  - component: {fileID: -3351648127215101987}
+  - component: {fileID: 967280907421943742}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -51,6 +53,49 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3351648127215101987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66780377694494110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c004626072f5e40aeb90a0451abc13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMovement: 5
+  direction: {x: 0, y: 0, z: 0}
+  controller: {fileID: 4798085578338337288}
+  camaraPersonaje: {fileID: 0}
+  mouseMovement: {x: 0, y: 0}
+  rotacionCamaraX: 0
+  rotacionPersonajeY: 0
+  sencibilidadDelRaton: 0
+  movementY: {x: 0, y: 0, z: 0}
+  gravity: -9.8
+  jumpHeight: 0
+--- !u!114 &967280907421943742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66780377694494110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15434498ab3492f4486aaa526c78fd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: -3351648127215101987}
+  jugador: {fileID: 0}
+  rangeDetection: 20
+  distanceAttack: 2
+  rangeAtack: 2
+  inputMoveForward: 0
+  animatorController: {fileID: 0}
+  attackRate: 0
 --- !u!1 &2993760128781774600
 GameObject:
   m_ObjectHideFlags: 0
