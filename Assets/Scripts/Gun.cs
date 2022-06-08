@@ -6,12 +6,33 @@ public class Gun : MonoBehaviour
 {
     public GameObject pref_Bullet;
     public Transform spawnPoint;
-    private void Update()
+    public float force;
+    public int magazineMax = 5;
+    float actualMagazine;
+
+    private void Start()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Instantiate(pref_Bullet, spawnPoint.position, spawnPoint.rotation);                   
-        }
+        actualMagazine = magazineMax;
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Fire1") && actualMagazine > 0)
+        {
+            GameObject go = Instantiate(pref_Bullet, spawnPoint.position, spawnPoint.rotation);
+            go.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * force, ForceMode.Impulse);
+            Destroy(go, 2f);
+            actualMagazine--;
+        }
+
+        if (Input.GetButtonDown("Boton recaragar"))
+        {
+            Reload();
+        }
+
+        void Reload()
+        {
+            actualMagazine = magazineMax;
+        }
+    }
 }

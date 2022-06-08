@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3536966894196543611}
   - component: {fileID: 8615652432990101776}
+  - component: {fileID: 1951722009342457571}
   m_Layer: 0
   m_Name: Ammo
   m_TagString: Untagged
@@ -49,6 +50,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &1951722009342457571
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350895990344907473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.0196528
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.0015258784}
 --- !u!1 &4453102967232866329
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +75,6 @@ GameObject:
   - component: {fileID: 4836042774803835354}
   - component: {fileID: 7280759006527518568}
   - component: {fileID: 3347774541835441301}
-  - component: {fileID: 1587228793927607615}
   m_Layer: 0
   m_Name: Render
   m_TagString: Untagged
@@ -133,17 +147,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1587228793927607615
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4453102967232866329}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
