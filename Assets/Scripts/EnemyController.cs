@@ -45,7 +45,12 @@ public class EnemyController : MonoBehaviour
             inputMoveForward = 0;
         }
 
-        movement.Move(0, inputMoveForward);                
+        if (animatorController.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            inputMoveForward = 0;
+        }
+        movement.Move(0, inputMoveForward);
+        animatorController.SetFloat("Movement", inputMoveForward);
     }
 
     void Rotar()
