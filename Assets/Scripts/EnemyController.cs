@@ -10,10 +10,10 @@ public class EnemyController : MonoBehaviour
     public float rangeDetection;
     public float distanceAttack;
     public float rangeAtack;
-    public float inputMoveForward;
-    public Animator animatorController;
     public float attackRate;
     float waitTime;
+
+    public Animator animComtroller;
 
     private void Start()
     {
@@ -27,11 +27,8 @@ public class EnemyController : MonoBehaviour
         if (distance <= rangeDetection)
         {
             Rotar();
-            inputMoveForward = 1;
-        }
-        else
-        {
-            inputMoveForward = 0;
+            movement.Move(0, 1);
+            animComtroller.SetFloat("SpeedMovemt", 1);
         }
 
         if (distance <= rangeAtack)
@@ -42,15 +39,7 @@ public class EnemyController : MonoBehaviour
                 Attack();
             }
             waitTime += Time.deltaTime;
-            inputMoveForward = 0;
         }
-
-        if (animatorController.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            inputMoveForward = 0;
-        }
-        movement.Move(0, inputMoveForward);
-        animatorController.SetFloat("Movement", inputMoveForward);
     }
 
     void Rotar()
@@ -73,6 +62,6 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
-        animatorController.SetTrigger("Attack");
+        
     }
 }

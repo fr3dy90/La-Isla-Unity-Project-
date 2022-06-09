@@ -4,7 +4,7 @@ ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: -7223563537927322271
+      74: -203655887218126122
     second: Standing Melee Attack Horizontal
   externalObjects:
   - first:
@@ -12,6 +12,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: GirlScoutZombie_Material
     second: {fileID: 2100000, guid: bfb0c779ec1cb394dbbccda653008c0c, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GirlScout_diffuse
+    second: {fileID: 2800000, guid: 4a2ff3aaf1ad79440b9442e30672e68e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GirlScout_normal
+    second: {fileID: 2800000, guid: 0194603b714975045923431d51533338, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GirlScout_specular
+    second: {fileID: 2800000, guid: ee5d7634b7e20fd4687e577d03270c99, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -79,8 +94,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
@@ -106,7 +121,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
