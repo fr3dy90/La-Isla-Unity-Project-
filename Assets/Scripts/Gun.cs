@@ -25,10 +25,7 @@ public class Gun : MonoBehaviour
             actualMagazine--;
         }
 
-        if (Input.GetButtonDown("Boton recaragar"))
-        {
-            Reload();
-        }
+        
 
         void Reload()
         {
