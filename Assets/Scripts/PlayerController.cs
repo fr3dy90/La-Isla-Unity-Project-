@@ -31,5 +31,6 @@ public class PlayerController : MonoBehaviour
         camaraPersonaje.transform.localRotation = Quaternion.Euler(rotacionCamaraX, 0, 0);
 
         movement.Move(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+        movement.Rotate(Input.GetAxis("Mouse X"));
     }
 }

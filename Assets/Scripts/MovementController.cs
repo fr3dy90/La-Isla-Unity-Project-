@@ -51,7 +51,7 @@ public class MovementController: MonoBehaviour
         controller.Move(direction * Time.deltaTime * speedMovement);
     }
 
-    void Rotate(float rotateValue)
+    public void Rotate(float rotateValue)
     {
         rotacionPersonajeY += rotateValue;
 
