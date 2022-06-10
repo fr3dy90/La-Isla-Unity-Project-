@@ -30,6 +30,11 @@ public class EnemyController : MonoBehaviour
             movement.Move(0, 1);
             animComtroller.SetFloat("SpeedMovemt", 1);
         }
+        else
+        {
+            animComtroller.SetFloat("SpeedMovemt", 0);
+            
+        }
 
         if (distance <= rangeAtack)
         {

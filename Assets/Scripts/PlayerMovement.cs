@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Rotacion de la camara")]
     public Camera camaraPersonaje;
-    public Vector2 mouseMovement;
     public float rotacionCamaraX;
     public float rotacionPersonajeY;
     public float sencibilidadDelRaton;
@@ -54,8 +53,7 @@ public class PlayerMovement : MonoBehaviour
     public void RotarPersonaje(float rotacionPersonaje)
     {
         rotacionPersonaje *= sencibilidadDelRaton;
-        mouseMovement.x = rotacionPersonaje;
-        rotacionPersonajeY += mouseMovement.x;
+        rotacionPersonajeY += rotacionPersonaje;
 
         //Rotar el personaje en base al movimiento acomulado
         controller.transform.rotation = Quaternion.Euler(0, rotacionPersonajeY, 0);
@@ -64,10 +62,10 @@ public class PlayerMovement : MonoBehaviour
     public void RotarCamera(float rotacionCamera)
     {
         //Capturar el movimiento del mouse
-        mouseMovement.y = rotacionCamera;
+         rotacionCamera *= sencibilidadDelRaton;
 
         //Almacenar el movimiento del mouse
-        rotacionCamaraX -= mouseMovement.y;
+        rotacionCamaraX -= rotacionCamera;
 
         //Limitar la rotacion de la camara en el eje x
         rotacionCamaraX = Mathf.Clamp(rotacionCamaraX, -40, 40);

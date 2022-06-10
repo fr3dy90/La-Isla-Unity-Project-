@@ -38,7 +38,6 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                Debug.Log("Soltar Objeto");
                 pickPoint.transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
                 pickPoint.transform.GetChild(0).transform.parent = null;
             }
