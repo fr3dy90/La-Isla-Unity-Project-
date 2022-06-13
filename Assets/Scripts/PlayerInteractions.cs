@@ -13,33 +13,35 @@ public class PlayerInteractions : MonoBehaviour
 
     private void Update()
     {
-        if (pickPoint.childCount == 0)
+        if (Input.GetButtonDown("PickButton"))
         {
-            Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward * distance, Color.green);
-            RaycastHit hit;
-            if (Physics.Raycast(cameraPlayer.position, cameraPlayer.forward, out hit, distance, lm))
+            if (pickPoint.childCount > 0)
             {
-                Debug.Log("Tengo Adelante: " + hit.transform.name);
-
-                if (hit.transform.tag == "Box")
+                pickPoint.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
+                pickPoint.DetachChildren();
+                gunPoint.gameObject.SetActive(true); 
+            }
+            else
+            {
+                if (Physics.Raycast(cameraPlayer.position, cameraPlayer.forward, out RaycastHit hit, distance, lm))
                 {
-                    //indicarle al jugador que puede tomar el objeto
-                    if (Input.GetButtonDown("Fire1"))
+                    if (hit.transform.tag == "Box")
                     {
-                        Debug.Log("Se emparenta el objeto");
                         hit.transform.GetComponent<Rigidbody>().isKinematic = true;
                         hit.transform.parent = pickPoint;
+                        hit.transform.localRotation = Quaternion.identity;
                         hit.transform.localPosition = Vector3.zero;
+                        gunPoint.gameObject.SetActive(false);
                     }
                 }
             }
         }
-        else
+
+        if (Input.GetButtonDown("Fire1"))
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (gunPoint.childCount > 0)
             {
-                pickPoint.transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
-                pickPoint.transform.GetChild(0).transform.parent = null;
+                gunPoint.GetComponentInChildren<Gun>().canShoot = true;
             }
         }
     }
@@ -65,11 +67,11 @@ public class PlayerInteractions : MonoBehaviour
             other.transform.parent = gunPoint;
             other.transform.localPosition = Vector3.zero;
             other.transform.localRotation = Quaternion.identity;
-        }
-
-        if (other.tag == "Axe")
-        {
-            Debug.Log("Damage");
+            other.GetComponent<Gun>().SetCamera(cameraPlayer);
+            if (pickPoint.childCount > 0)
+            {
+                gunPoint.gameObject.SetActive(false);                
+            }
         }
     }
 
@@ -83,3 +85,6 @@ public class PlayerInteractions : MonoBehaviour
        
     }
 }
+
+
+

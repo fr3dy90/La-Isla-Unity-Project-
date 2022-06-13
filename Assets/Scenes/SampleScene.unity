@@ -2453,14 +2453,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287b611bb17d6144b8ef86149be4a962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootRate: 0
-  range: 0
+  shootRate: 0.35
+  range: 500
   canShoot: 0
-  maxBullets: 0
+  maxBullets: 13
   actualBullets: 0
   gunFlash: {fileID: 0}
-  shootSound: {fileID: 0}
-  emptyShootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 557b80b5085892348908cd8c5936fdd7, type: 3}
+  emptyShootSound: {fileID: 8300000, guid: 665e24ee4c63ce74c9bd66e6cc155cb9, type: 3}
   reloadSound: {fileID: 0}
 --- !u!82 &1709042929
 AudioSource:

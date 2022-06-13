@@ -18,45 +18,52 @@ public class Gun : MonoBehaviour
     public AudioClip shootSound;
     public AudioClip emptyShootSound;
     public AudioClip reloadSound;
-    Transform camera;
+    Transform myCamera;
     AudioSource gunSfx;
 
     private void Start()
     {
         actualBullets = maxBullets;
         shootLastTime = shootRate;
+        gunSfx = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && canShoot)
+        if (canShoot)
         {
-            if (shootRate >= shootLastTime)
+            canShoot = false;
+            if (shootLastTime >= shootRate)
             {
                 shootLastTime = 0;
                 Shoot();
             }
-            shootLastTime += Time.deltaTime;
         }
+        shootLastTime += Time.deltaTime;
     }
 
     public void SetCamera(Transform _camera)
     {
-        camera = _camera; 
+        myCamera = _camera;
     }
 
-    void Shoot()
+    public void Shoot()
     {
-        if (camera != null)
+        if (myCamera != null)
         {
             if (actualBullets > 0)
             {
                 actualBullets--;
                 gunSfx.PlayOneShot(shootSound);
 
-                if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, shootRate))
+                if (Physics.Raycast(myCamera.position, myCamera.forward, out RaycastHit hit, shootRate))
                 {
-
+                    if (hit.transform != null)
+                    {
+                        //Colocar Particulas
+                        //Colocar Decal
+                        //Preguntar por interaccion
+                    }
                 }
             }
             else
