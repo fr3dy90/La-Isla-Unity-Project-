@@ -14,10 +14,26 @@ public class EnemyController : MonoBehaviour
         float distance = Vector3.Distance(transform.position, jugador.position);
         if(distance <= rangeOfDetection)
         {
+            Vector3 forwardEnemigo = transform.forward.normalized;
+            Vector3 direccionAljugador = (jugador.transform.position - transform.position).normalized;
+            float v3Dot = Vector3.Dot(forwardEnemigo, direccionAljugador);
 
+            if (v3Dot < 0.95f)
+            {
+                Vector3 rigthEnemigo = transform.right.normalized;
+                float v3DotRight = Vector3.Dot(rigthEnemigo, direccionAljugador);
+                if (v3DotRight > 0)
+                {
+                    movement.Rotate(1);
+                }
+                else
+                {
+                    movement.Rotate(-1);
+                }
+            }
         }
 
-        //Vector3.Dot
+        
 
 
     }
